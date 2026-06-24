@@ -1,27 +1,29 @@
-name : pipeline 
-on : 
-    push : 
-        branches : [main]
-    pull_request : 
-        branches : [main]
+name: CI
 
-jobs :
-    test :
-        runs-on :ubuntu-latest
-        
-        steps:
-            - name :check out code
-              uses : actions/checkout@v4
-            - name : set up python
-              uses : actions/setup-python@v5
-              with :
-                python-version : '3.12'
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-            - name : install dependencies
-              run : pip install -r requirements.txt
+jobs:
+  test:
+    runs-on: ubuntu-latest
 
-            - name : run python check
-              run : python manage.py check
-            - name : run test
-              run  : python manage.py test
-            
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Django system checks
+        run: python manage.py check
+
+      - name: Run tests
+        run: python manage.py test
