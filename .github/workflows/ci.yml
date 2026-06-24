@@ -28,6 +28,9 @@ jobs:
 
       - name: Run Django system checks
         run: python manage.py check
+      - name : check ruff quality 
+        run : ruff check
+
 
       - name: Run tests
         run: python manage.py test
