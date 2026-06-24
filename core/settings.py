@@ -8,6 +8,7 @@ GitHub -> Railway deployment pipeline.
 import os
 from pathlib import Path
 
+
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,6 +89,10 @@ DATABASES = {
     )
 }
 
+CSRF_TRUSTED_ORIGINS = os.environ.get(
+    "CSRF_TRUSTED_ORIGINS",
+    "https://web-production-77eab.up.railway.app"
+).split(",")
 # --------------------------------------------------------------------------
 # Passwords
 # --------------------------------------------------------------------------
