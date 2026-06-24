@@ -7,30 +7,34 @@ on:
     branches: [ main ]
 
 jobs:
+  lint :
+    runs-on : ubuntu-latest
+    steps :
+      - uses : actions/checkout@v4
+      - uses:  actions/setup-python@v5
+        with :
+          python-version : "3.12"
+      - name : pip install all requirements
+        run : pip install -r requirements.txt
+      - name : ruff checking 
+        run : ruff check 
   test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-       
-
-      - name: Collect static files
-        run: python manage.py collectstatic --noinput
-
-      - name: Run Django system checks
-        run: python manage.py check
-      - name : check ruff quality 
-        run : ruff check
+      - uses : actions/checkout@v4
+      - uses : actions/setup-python@v5
+        with :
+          python-version : "3.12"
+      - name : install all requirments
+        run : pip install -r requirements.txt
+      - name : collect static file 
+        run : python manage.py collectstatic
+      - name : run all test 
+        run : python manage.py test
+      
+    
 
 
-      - name: Run tests
-        run: python manage.py test
+
+
+
