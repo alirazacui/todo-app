@@ -80,9 +80,7 @@ jobs:
       - name: Build Docker image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/django-app:latest .
 
-      - name: Tag image (optional but good practice)
-        run: docker tag django-app:latest ${{ secrets.DOCKER_USERNAME }}/django-app:latest
-
+      
       - name: Push image to DockerHub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/django-app:latest
 
