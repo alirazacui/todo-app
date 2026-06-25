@@ -100,7 +100,7 @@ jobs:
            docker run -d \
             --name django-test \
             -p 8000:8000 \
-            -e DB_NAME=test_db
+            -e DB_NAME=test_db \
             -e DB_USER=postgres \
             -e DB_PASSWORD=postgres \
             -e DB_HOST=host.docker.internal \
