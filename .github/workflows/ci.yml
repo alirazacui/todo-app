@@ -86,7 +86,7 @@ jobs:
       - name: Push image to DockerHub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/django-app:latest
 
-      - name: Show images
+      - name: Show images of repo
         run: docker images
 
   
