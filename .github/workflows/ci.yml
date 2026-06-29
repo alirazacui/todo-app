@@ -109,7 +109,7 @@ jobs:
 
       - name : show running container
         run : docker ps
-      - name : show logs
+      - name : show logs of cinatiner
         run : docker logs django-test
 
 
